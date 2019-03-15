@@ -1,7 +1,5 @@
 ===================
 Facebook Token
-from program:https://github.com/iktw/python-facebook-token
-artical:https://medium.com/@mohammedhammoud/how-to-refresh-facebook-access-token-25d3a2547efb
 ===================
 
 # Install
@@ -10,6 +8,8 @@ pip install facebooktoken
 # Prepare your necessary varibles
 1. Visit https://developers.facebook.com/tools/explorer/ and retrieve your short lived access token
 2. Visit https://developers.facebook.com/apps/ and retreive your **APP ID** and **APP SECRET**
+3. artical https://medium.com/@mohammedhammoud/how-to-refresh-facebook-access-token-25d3a2547efb
+4. from project：https://github.com/iktw/python-facebook-token
 
 # Use your retrieved variables
 ```python
