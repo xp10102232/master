@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Facebook Token</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="facebook-token">Facebook Token</h1>
+<h2 id="install">Install</h2>
+<p>pip install facebooktoken</p>
+<h2 id="prepare-your-necessary-varibles">Prepare your necessary varibles</h2>
+<ol>
+<li>Visit <a href="https://developers.facebook.com/tools/explorer/">https://developers.facebook.com/tools/explorer/</a> and retrieve your short lived access token</li>
+<li>Visit <a href="https://developers.facebook.com/apps/">https://developers.facebook.com/apps/</a> and retreive your <strong>APP ID</strong> and <strong>APP SECRET</strong></li>
+<li>artical <a href="https://medium.com/@mohammedhammoud/how-to-refresh-facebook-access-token-25d3a2547efb">https://medium.com/@mohammedhammoud/how-to-refresh-facebook-access-token-25d3a2547efb</a></li>
+<li>from project：<a href="https://github.com/iktw/python-facebook-token">https://github.com/iktw/python-facebook-token</a></li>
+</ol>
+<h2 id="use-your-retrieved-variables">Use your retrieved variables</h2>
+<pre><code class="language-python"><div><span class="hljs-keyword">from</span> facebooktoken <span class="hljs-keyword">import</span> FacebookTokenRefresher
+
+ftr = FacebookTokenRefresher(
+	app_id=<span class="hljs-number">700797440051611</span>,
+	app_secret=<span class="hljs-string">"485c92c8220b87badbe8f6bb5cd02be7"</span>,
+	short_access_token=<span class="hljs-string">"EAAJ9Xx55SZA0BAHmtrLHE3mvthKHW5mbBDXpkW6haI62UBevj8bZB1DWdoGKKtYhevbZBvtyOBHVdC7i3cFmxbO7PaUpjS2yovRO4BWPsNcmRqLzUCcAcU70dkl3WrdrqZAvG1jPWrdcnVJZANKiZCJmqf44vXfNU9kAzA9uqRM0FTzYZBk6P6QYlpQJ2LJiNQZD"</span>
+)
+
+results = ftr.refresh()
+</div></code></pre>
+<h3 id="results-with-status-code-200">Results with status code 200</h3>
+<pre><code><div>{
+	'access_token': 'EAAJ9Xx55SZA0BAKt4QswTRq7CFx0V4a9Ria1DrOlP36rtyJDUZAOmIdMaO7LZBTInDUaN7jnIgckxwy5FYApzqrpYYhbM5rsBSzx9TLZAdKrFk9BRDCw6foj07dEYkQhbPq8TYYeRYqDeLutgwB4hbVyYSes43AZD',
+	'expires': '5179894'
+}
+</div></code></pre>
+<h2 id="on-failure">On failure</h2>
+<p>By default on failure FacebookTokenRefresherException will get raised with the response data. You could if needed pass raise_exception=False when using the <em>refresh()</em> method.</p>
+<h3 id="results-on-failure-with-execption-raised-exception">Results on failure with execption raised (Exception)</h3>
+<pre><code class="language-python"><div>facebooktoken.base.FacebookTokenRefresherException: {
+    <span class="hljs-string">"error"</span>: {
+        <span class="hljs-string">"message"</span>: <span class="hljs-string">"Invalid Client ID"</span>,
+        <span class="hljs-string">"code"</span>: <span class="hljs-number">101</span>,
+        <span class="hljs-string">"type"</span>: <span class="hljs-string">"OAuthException"</span>,
+        <span class="hljs-string">"fbtrace_id"</span>: <span class="hljs-string">"EYsYDFbxVAm"</span>
+    }
+}
+</div></code></pre>
+<h3 id="results-on-failure-without-execption-raised-dictionary">Results on failure without execption raised (Dictionary)</h3>
+<pre><code class="language-json"><div>{
+    <span class="hljs-attr">"error"</span>: {
+        <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Invalid Client ID"</span>,
+        <span class="hljs-attr">"code"</span>: <span class="hljs-number">101</span>,
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"OAuthException"</span>,
+        <span class="hljs-attr">"fbtrace_id"</span>: <span class="hljs-string">"DFbQ8aA94t5"</span>
+    }
+}
+</div></code></pre>
+
+    </body>
+    </html>
