@@ -1,5 +1,7 @@
 ===================
 Facebook Token
+from program:https://github.com/iktw/python-facebook-token
+artical:https://medium.com/@mohammedhammoud/how-to-refresh-facebook-access-token-25d3a2547efb
 ===================
 
 # Install
