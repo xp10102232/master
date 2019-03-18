@@ -9,12 +9,35 @@ class FacebookTokenRefresherException(Exception):
 class FacebookTokenRefresher:
     base_url = 'https://graph.facebook.com/oauth/access_token'
     debug_token_url = 'https://graph.facebook.com/debug_token'
-    proxy_ip='http://proxy.******.com:8080'
 
-    def __init__(self, app_id, app_secret, short_access_token):
+    def __init__(self, app_id, app_secret, short_access_token, proxy_ip):
         self.app_id = app_id
         self.app_secret = app_secret
         self.short_access_token = short_access_token
+        self.proxy_ip = proxy_ip
+
+    def get_short_term_token(self, raise_exception=True):
+        params = {
+            'grant_type': 'client_credentials',
+            'client_id': self.app_id,
+            'client_secret': self.app_secret
+        }
+        proxy_setting={'http': self.proxy_ip,'https': self.proxy_ip}
+        print (self.proxy_ip)
+        print (proxy_setting)
+        print (self.base_url)
+        print (params)
+        r = requests.get(self.base_url, params=params,proxies=proxy_setting)
+        print (r.url)
+        print (r.text)
+        if r.status_code == 200:
+            return dict(parse.parse_qsl(r.text))
+        else:
+            if raise_exception:
+                raise FacebookTokenRefresherException(json.dumps(r.json(), indent=4))
+            else:
+                return r.json()
+    
 
     def refresh(self, raise_exception=True):
         params = {
