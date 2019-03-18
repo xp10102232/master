@@ -16,7 +16,7 @@ class FacebookTokenRefresher:
         self.short_access_token = short_access_token
         self.proxy_ip = proxy_ip
 
-    def get_short_term_token(self, raise_exception=True):
+    def get_fake_access_token(self, raise_exception=True):
         params = {
             'grant_type': 'client_credentials',
             'client_id': self.app_id,
